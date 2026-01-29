@@ -77,6 +77,8 @@
             color: white;
             width: 90%;
             max-width: 400px;
+            position: relative; /* inside card */
+            z-index: 5; /* above invisible buttons */
         }
 
         /* Full screen invisible left/right buttons */
@@ -151,8 +153,8 @@
         <div id="front"></div>
         <div id="answer"></div>
     </div>
+    <button id="showAnswer">Show Answer</button>
 </div>
-<button id="showAnswer">Show Answer</button>
 
 <div id="emoji-left" class="emoji">❌</div>
 <div id="emoji-right" class="emoji">✅</div>
