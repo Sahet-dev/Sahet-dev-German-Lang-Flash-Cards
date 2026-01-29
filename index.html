@@ -5,64 +5,69 @@
     <title>Turkmen → German Flashcards</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+        /* Base Styles */
         body {
             font-family: Arial, sans-serif;
             background: #f4f4f4;
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
+            padding: 10px;
         }
 
         #timer {
-            position: absolute;
-            top: 15px;
-            font-size: 18px;
+            position: fixed;
+            top: 10px;
+            font-size: 16px;
             font-weight: bold;
             z-index: 10;
         }
 
         #card {
             background: white;
-            width: 90%;
+            width: 100%;
             max-width: 400px;
-            min-height: 820px;
+            min-height: 400px;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Push content to top and button to bottom */
+            justify-content: space-between;
             align-items: center;
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             position: relative;
             z-index: 5;
+            transition: min-height 0.3s ease;
         }
 
         .card-content {
             width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         #front, #answer {
             width: 100%;
             word-wrap: break-word;
-            font-size: 22px;
         }
 
         #answer {
             margin-top: 15px;
             color: #2c7;
             display: none;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         #showAnswer {
-            margin-top: 20px;
+            margin-top: 15px;
             padding: 12px 20px;
             font-size: 16px;
             cursor: pointer;
@@ -71,12 +76,12 @@
             background: #3498db;
             color: white;
             width: 90%;
-            align-self: center;
+            max-width: 400px;
         }
 
         /* Full screen invisible left/right buttons */
         .side-btn {
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 50%;
             height: 100%;
@@ -90,7 +95,7 @@
 
         /* Emoji feedback smaller on left/right */
         .emoji {
-            position: absolute;
+            position: fixed;
             font-size: 40px;
             top: 50%;
             transform: translateY(-50%);
@@ -105,19 +110,39 @@
 
         #done {
             display: none;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
             text-align: center;
             padding: 20px;
+            white-space: pre-line;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 500px) {
+            #card {
+                font-size: 18px;
+                min-height: 350px;
+                padding: 15px;
+            }
+
+            #answer {
+                font-size: 16px;
+            }
+
+            #showAnswer {
+                font-size: 15px;
+                padding: 10px;
+            }
+
+            .emoji {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div id="timer">Time: 0s</div>
-
-<!-- Invisible full-screen buttons -->
-
 
 <div id="card">
     <div id="wrongBtn" class="side-btn"></div>
@@ -129,7 +154,6 @@
 </div>
 <button id="showAnswer">Show Answer</button>
 
-<!-- Emoji feedback -->
 <div id="emoji-left" class="emoji">❌</div>
 <div id="emoji-right" class="emoji">✅</div>
 
@@ -146,7 +170,7 @@
     }
 
     function showCard() {
-        if (cards.length === 0) {
+        if (!cards || cards.length === 0) {
             finish();
             return;
         }
@@ -178,7 +202,7 @@
     document.getElementById("wrongBtn").onclick = () => {
         showEmoji("left");
         let card = cards.shift();
-        cards.push(card); // put wrong card at the end
+        cards.push(card);
         setTimeout(showCard, 300);
     };
 
