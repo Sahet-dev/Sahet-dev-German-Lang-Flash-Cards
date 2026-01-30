@@ -2,86 +2,294 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Turkmen → German Flashcards</title>
+
+    <!-- SEO TITLE -->
+    <title>Turkmen to German Flashcards (A1–B2) | Learn German Vocabulary</title>
+
+    <!-- SEO META -->
+    <meta name="description" content="Learn German vocabulary from Turkmen with interactive flashcards. Covers A1, A2, B1, and B2 levels. Mobile-friendly, free, and perfect for exam preparation.">
+    <meta name="keywords" content="Turkmen German flashcards, learn German Turkmen, German verbs A1 A2 B1 B2, German vocabulary Turkmen">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Open Graph (Social Sharing) -->
+    <meta property="og:title" content="Turkmen → German Flashcards (A1–B2)">
+    <meta property="og:description" content="Interactive flashcards to learn German from Turkmen. Choose your level and start learning instantly.">
+    <meta property="og:type" content="website">
+
     <style>
-        /* Base Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 10px;
-            overflow-x: hidden;
+            padding: 20px;
+            color: #2d3748;
         }
 
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        header h1 {
+            color: white;
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            color: rgba(255,255,255,0.95);
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        header p strong {
+            color: #ffd700;
+            font-weight: 600;
+        }
+
+        main {
+            width: 100%;
+            max-width: 500px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ---------- START SCREEN ---------- */
+        #startScreen {
+            background: white;
+            padding: clamp(30px, 6vw, 45px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%;
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #startScreen h2 {
+            font-size: clamp(1.3rem, 4vw, 1.75rem);
+            color: #2d3748;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .select-group {
+            margin-bottom: 20px;
+        }
+
+        #startScreen label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #startScreen select {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: #f7fafc;
+            color: #2d3748;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 45px;
+        }
+
+        #startScreen select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        #startScreen button {
+            width: 100%;
+            margin-top: 30px;
+            padding: 18px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #startScreen button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        #startScreen button:active {
+            transform: translateY(0);
+        }
+
+        /* ---------- GAME UI ---------- */
         #counter {
             position: fixed;
-            top: 10px;
-            font-size: 16px;
-            font-weight: bold;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 600;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            background: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: none;
+            color: #667eea;
+            z-index: 100;
+        }
+
+        .tap-zone {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 25%;
+            opacity: 0;
+            cursor: pointer;
             z-index: 10;
         }
 
+        /* column positions */
+        .tap-zone.wrong { left: 0; }
+        .tap-zone.show:nth-of-type(2) { left: 25%; }
+        .tap-zone.show:nth-of-type(3) { left: 50%; }
+        .tap-zone.right { left: 75%; }
+
         #card {
+            display: none;
             background: white;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             min-height: 400px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+            padding: clamp(30px, 6vw, 40px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             text-align: center;
-            font-size: 20px;
             position: relative;
-            z-index: 5;
-            transition: min-height 0.3s ease;
+            animation: cardFlip 0.5s ease;
         }
 
-        .card-content {
-            width: 100%;
-            flex: 1;
+        @keyframes cardFlip {
+            from {
+                opacity: 0;
+                transform: rotateY(20deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateY(0);
+            }
+        }
+
+        #card h2 {
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            font-weight: 600;
+            min-height: 100px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
         }
 
-        #front, #answer {
-            width: 100%;
-            word-wrap: break-word;
-        }
-
         #answer {
-            margin-top: 75px;
-            color: #2c7;
             display: none;
-            font-size: 18px;
+            margin-top: 30px;
+            color: #48bb78;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            font-weight: 500;
+            padding: 20px;
+            background: #f0fff4;
+            border-radius: 12px;
+            border-left: 4px solid #48bb78;
         }
 
         #showAnswer {
-            margin-top: 15px;
-            padding: 12px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 8px;
+            margin-top: 40px;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
             border: none;
-            background: #3498db;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
-        /* Full screen invisible left/right buttons */
+        #showAnswer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        #showAnswer:active {
+            transform: translateY(0);
+        }
+
+        /* ---------- INSTRUCTION TEXT ---------- */
+        .instruction {
+            margin-top: 30px;
+            padding: 20px;
+            background: #edf2f7;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .instruction strong {
+            color: #2d3748;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* ---------- SIDE BUTTONS ---------- */
         .side-btn {
             position: fixed;
             top: 0;
@@ -89,314 +297,491 @@
             height: 100%;
             opacity: 0;
             cursor: pointer;
-            z-index: 2;
+            z-index: 50;
         }
 
         #wrongBtn { left: 0; }
         #rightBtn { right: 0; }
 
-        /* Emoji feedback */
+        /* ---------- EMOJIS ---------- */
         .emoji {
             position: fixed;
-            font-size: 40px;
+            font-size: clamp(50px, 12vw, 80px);
             top: 50%;
             transform: translateY(-50%);
             opacity: 0;
+            transition: opacity 0.3s ease;
             pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 20;
+            z-index: 200;
         }
 
-        #emoji-left { left: 20px; }
-        #emoji-right { right: 20px; }
+        #emoji-left { left: clamp(20px, 5vw, 50px); }
+        #emoji-right { right: clamp(20px, 5vw, 50px); }
 
         #done {
             display: none;
-            font-size: 22px;
-            font-weight: bold;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 700;
             text-align: center;
-            padding: 20px;
+            color: white;
+            background: rgba(255,255,255,0.2);
+            padding: 40px;
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
             white-space: pre-line;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 500px) {
-            #card { font-size: 28px; min-height: 350px; padding: 15px; }
-            #answer { font-size: 46px; }
-            #showAnswer { font-size: 15px; padding: 10px; }
-            .emoji { font-size: 30px; }
+        footer {
+            margin-top: 40px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            color: rgba(255,255,255,0.9);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* ---------- MOBILE OPTIMIZATIONS ---------- */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            header {
+                padding: 20px 15px;
+            }
+
+            #startScreen {
+                padding: 25px 20px;
+            }
+
+            #card {
+                min-height: 350px;
+                padding: 25px 20px;
+            }
+
+            .instruction {
+                padding: 15px;
+                margin-top: 20px;
+            }
+
+            #counter {
+                top: 15px;
+                padding: 8px 20px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-height: 700px) {
+            header {
+                padding: 20px;
+            }
+
+            #card {
+                min-height: 320px;
+            }
+        }
+
+        /* ---------- LANDSCAPE MOBILE ---------- */
+        @media (max-height: 500px) and (orientation: landscape) {
+            header {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            #card {
+                min-height: 280px;
+                padding: 20px;
+            }
+
+            #card h2 {
+                min-height: 60px;
+                font-size: 1.2rem;
+            }
+
+            #answer {
+                margin-top: 15px;
+                padding: 15px;
+            }
+
+            #showAnswer {
+                margin-top: 20px;
+                padding: 12px 24px;
+            }
+
+            .instruction {
+                margin-top: 15px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div id="counter">Remaining cards: 0</div>
+<header>
+    <h1>Turkmen → German Flashcards</h1>
+    <p>
+        Learn German vocabulary from Turkmen with interactive flashcards.
+        Covers levels <strong>A1, A2, B1, and B2</strong>.
+        Perfect for beginners and advanced learners.
+    </p>
+</header>
 
-<div id="card">
-    <div id="wrongBtn" class="side-btn"></div>
-    <div id="rightBtn" class="side-btn"></div>
-    <div class="card-content">
-        <h1><div id="front"></div></h1>
-        <h2><i><div id="answer"></div></i></h2>
+<main>
+
+    <!-- START SCREEN -->
+    <div id="startScreen">
+        <h2>Select Level Range</h2>
+
+        <div class="select-group">
+            <label for="fromLevel">From</label>
+            <select id="fromLevel" aria-label="From level">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </select>
+        </div>
+
+        <div class="select-group">
+            <label for="toLevel">To</label>
+            <select id="toLevel" aria-label="To level">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="ALL">All</option>
+            </select>
+        </div>
+
+        <button onclick="startGame()">Start Learning</button>
     </div>
-    <button id="showAnswer">Görkez</button>
-</div>
+
+    <div id="counter"></div>
+
+    <div id="card">
+        <div class="tap-zone wrong" id="wrongBtn"></div>
+        <div class="tap-zone show" id="showBtn1"></div>
+        <div class="tap-zone show" id="showBtn2"></div>
+        <div class="tap-zone right" id="rightBtn"></div>
+
+
+        <h2 id="front"></h2>
+        <h3><i id="answer"></i></h3>
+
+        <button id="showAnswer">Show Answer</button>
+
+        <div class="instruction">
+            <strong>How to use:</strong>
+            Tap left side (❌) to review again • Tap right side (✅) to mark as learned
+        </div>
+    </div>
+
+</main>
 
 <div id="emoji-left" class="emoji">❌</div>
 <div id="emoji-right" class="emoji">✅</div>
 
 <div id="done"></div>
 
+<footer>
+    © 2026 Turkmen–German Flashcards • Free language learning tool
+</footer>
+
 <script>
-    // Sample flashcards
-    let cards = [
+    const LEVELS = ["A1","A2","B1","B2"];
+    let startTime = 0;
+    let cards = [];
 
-        /* ===== A1 ===== */
-        { front: "bolmak (to be)", back: "sein" },
-        { front: "bolmak (eýe bolmak)", back: "haben" },
-        { front: "bolup galmak / bolmak", back: "werden" },
-        { front: "gitmek", back: "gehen" },
-        { front: "gelmek", back: "kommen" },
-        { front: "galmak", back: "bleiben" },
-        { front: "etmek / ýasamak", back: "machen" },
-        { front: "etmek", back: "tun" },
-        { front: "aýtmak", back: "sagen" },
-        { front: "görmek", back: "sehen" },
-        { front: "bermek", back: "geben" },
-        { front: "almak", back: "nehmen" },
-        { front: "getirmek", back: "bringen" },
-        { front: "alyp gelmek", back: "holen" },
-        { front: "öwrenmek", back: "lernen" },
-        { front: "oýnamak", back: "spielen" },
-        { front: "ýaşamak (ýaşaýyş)", back: "wohnen" },
-        { front: "ýaşamak", back: "leben" },
-        { front: "ady bolmak", back: "heißen" },
-        { front: "soramak", back: "fragen" },
-        { front: "jogap bermek", back: "antworten" },
-        { front: "iýmək", back: "essen" },
-        { front: "içmek", back: "trinken" },
-        { front: "uklamak", back: "schlafen" },
-        { front: "ylgamak / ýöremek", back: "laufen" },
-        { front: "sürmek / ulag bilen gitmek", back: "fahren" },
-        { front: "uçmak", back: "fliegen" },
-        { front: "satyn almak", back: "kaufen" },
-        { front: "tölemek", back: "bezahlen" },
-        { front: "nahar bişirmek", back: "kochen" },
-        { front: "açmak", back: "öffnen" },
-        { front: "ýapmak", back: "schließen" },
-        { front: "kömek etmek", back: "helfen" },
-        { front: "başlamak", back: "beginnen" },
-        { front: "tamamlamak / gutarmak", back: "enden" },
-        { front: "okamak (uni)", back: "studieren" },
-        { front: "türgenleşmek / maşk etmek", back: "üben" },
-        { front: "söýmek", back: "lieben" },
-        { front: "ýigrenmek", back: "hassen" },
+    /* ---------- DATA ---------- */
+    const ALL_CARDS = [
+        { front: "bolmak (to be)", back: "sein" , level:"A1" },
+        { front: "bolmak (eýe bolmak)", back: "haben" , level:"A1" },
+        { front: "bolup galmak / bolmak", back: "werden" , level:"A1" },
+        { front: "gitmek", back: "gehen" , level:"A1" },
+        { front: "gelmek", back: "kommen" , level:"A1" },
+        { front: "galmak", back: "bleiben" , level:"A1" },
+        { front: "etmek / ýasamak", back: "machen" , level:"A1" },
+        { front: "etmek", back: "tun" , level:"A1" },
+        { front: "aýtmak", back: "sagen" , level:"A1" },
+        { front: "görmek", back: "sehen" , level:"A1" },
+        { front: "bermek", back: "geben" , level:"A1" },
+        { front: "almak", back: "nehmen" , level:"A1" },
+        { front: "getirmek", back: "bringen" , level:"A1" },
+        { front: "alyp gelmek", back: "holen" , level:"A1" },
+        { front: "öwrenmek", back: "lernen" , level:"A1" },
+        { front: "oýnamak", back: "spielen" , level:"A1" },
+        { front: "ýaşamak (ýaşaýyş)", back: "wohnen" , level:"A1" },
+        { front: "ýaşamak", back: "leben" , level:"A1" },
+        { front: "ady bolmak", back: "heißen" , level:"A1" },
+        { front: "soramak", back: "fragen" , level:"A1" },
+        { front: "jogap bermek", back: "antworten" , level:"A1" },
+        { front: "iýmək", back: "essen" , level:"A1" },
+        { front: "içmek", back: "trinken" , level:"A1" },
+        { front: "uklamak", back: "schlafen" , level:"A1" },
+        { front: "ylgamak / ýöremek", back: "laufen" , level:"A1" },
+        { front: "sürmek / ulag bilen gitmek", back: "fahren" , level:"A1" },
+        { front: "uçmak", back: "fliegen" , level:"A1" },
+        { front: "satyn almak", back: "kaufen" , level:"A1" },
+        { front: "tölemek", back: "bezahlen" , level:"A1" },
+        { front: "nahar bişirmek", back: "kochen" , level:"A1" },
+        { front: "açmak", back: "öffnen" , level:"A1" },
+        { front: "ýapmak", back: "schließen" , level:"A1" },
+        { front: "kömek etmek", back: "helfen" , level:"A1" },
+        { front: "başlamak", back: "beginnen" , level:"A1" },
+        { front: "tamamlamak / gutarmak", back: "enden" , level:"A1" },
+        { front: "okamak (uni)", back: "studieren" , level:"A1" },
+        { front: "türgenleşmek / maşk etmek", back: "üben" , level:"A1" },
+        { front: "söýmek", back: "lieben" , level:"A1" },
+        { front: "ýigrenmek", back: "hassen" , level:"A1" },
 
-        /* ===== A2 ===== */
-        { front: "geplemek", back: "sprechen" },
-        { front: "gürleşmek", back: "reden" },
-        { front: "gürrüň bermek", back: "erzählen" },
-        { front: "eşitmek", back: "hören" },
-        { front: "diňlemek", back: "zuhören" },
-        { front: "düşünmek", back: "verstehen" },
-        { front: "düşündirmek", back: "erklären" },
-        { front: "pikir etmek", back: "meinen" },
-        { front: "ynanmak", back: "glauben" },
-        { front: "bilmek (fakt)", back: "wissen" },
-        { front: "tanymak", back: "kennen" },
-        { front: "ýatdan çykarmak", back: "vergessen" },
-        { front: "ýatlamak", back: "erinnern" },
-        { front: "islemek", back: "möchten" },
-        { front: "duýmak", back: "fühlen" },
-        { front: "umyt etmek", back: "hoffen" },
-        { front: "synanyşmak", back: "versuchen" },
-        { front: "gerek bolmak", back: "brauchen" },
-        { front: "ýetip gelmek", back: "ankommen" },
-        { front: "ugramak / gitmek", back: "abfahren" },
-        { front: "bile gelmek", back: "mitkommen" },
-        { front: "yza dolanmak", back: "zurückkommen" },
-        { front: "çakylyk bermek", back: "einladen" },
-        { front: "jaň etmek", back: "anrufen" },
-        { front: "garşylap almak", back: "abholen" },
-        { front: "myhmançylyk etmek", back: "besuchen" },
-        { front: "duşuşmak", back: "treffen" },
-        { front: "başlamak", back: "anfangen" },
-        { front: "bes etmek", back: "aufhören" },
-        { front: "gözlemek", back: "suchen" },
-        { front: "ýitirmek", back: "verlieren" },
-        { front: "ýeňmek", back: "gewinnen" },
-        { front: "ugratmak", back: "schicken" },
-        { front: "almak (alyp bolmak)", back: "bekommen" },
-        { front: "bahasy bolmak", back: "kosten" },
-        { front: "syýahat etmek", back: "reisen" },
+        { front: "geplemek", back: "sprechen" , level:"A2" },
+        { front: "gürleşmek", back: "reden" , level:"A2" },
+        { front: "gürrüň bermek", back: "erzählen" , level:"A2" },
+        { front: "eşitmek", back: "hören" , level:"A2" },
+        { front: "diňlemek", back: "zuhören" , level:"A2" },
+        { front: "düşünmek", back: "verstehen" , level:"A2" },
+        { front: "düşündirmek", back: "erklären" , level:"A2" },
+        { front: "pikir etmek", back: "meinen" , level:"A2" },
+        { front: "ynanmak", back: "glauben" , level:"A2" },
+        { front: "bilmek (fakt)", back: "wissen" , level:"A2" },
+        { front: "tanymak", back: "kennen" , level:"A2" },
+        { front: "ýatdan çykarmak", back: "vergessen" , level:"A2" },
+        { front: "ýatlamak", back: "erinnern" , level:"A2" },
+        { front: "islemek", back: "möchten" , level:"A2" },
+        { front: "duýmak", back: "fühlen" , level:"A2" },
+        { front: "umyt etmek", back: "hoffen" , level:"A2" },
+        { front: "synanyşmak", back: "versuchen" , level:"A2" },
+        { front: "gerek bolmak", back: "brauchen" , level:"A2" },
+        { front: "ýetip gelmek", back: "ankommen" , level:"A2" },
+        { front: "ugramak / gitmek", back: "abfahren" , level:"A2" },
+        { front: "bile gelmek", back: "mitkommen" , level:"A2" },
+        { front: "yza dolanmak", back: "zurückkommen" , level:"A2" },
+        { front: "çakylyk bermek", back: "einladen" , level:"A2" },
+        { front: "jaň etmek", back: "anrufen" , level:"A2" },
+        { front: "garşylap almak", back: "abholen" , level:"A2" },
+        { front: "myhmançylyk etmek", back: "besuchen" , level:"A2" },
+        { front: "duşuşmak", back: "treffen" , level:"A2" },
+        { front: "başlamak", back: "anfangen" , level:"A2" },
+        { front: "bes etmek", back: "aufhören" , level:"A2" },
+        { front: "gözlemek", back: "suchen" , level:"A2" },
+        { front: "ýitirmek", back: "verlieren" , level:"A2" },
+        { front: "ýeňmek", back: "gewinnen" , level:"A2" },
+        { front: "ugratmak", back: "schicken" , level:"A2" },
+        { front: "almak (alyp bolmak)", back: "bekommen" , level:"A2" },
+        { front: "bahasy bolmak", back: "kosten" , level:"A2" },
+        { front: "syýahat etmek", back: "reisen" , level:"A2" },
 
         /* Reflexive */
-        { front: "şatlanmak", back: "sich freuen" },
-        { front: "gyzyklanmak", back: "sich interessieren" },
-        { front: "ötünç soramak", back: "sich entschuldigen" },
-        { front: "ýuwunmak", back: "sich waschen" },
-        { front: "duýmak", back: "sich fühlen" },
+        { front: "şatlanmak", back: "sich freuen" , level:"A2" },
+        { front: "gyzyklanmak", back: "sich interessieren" , level:"A2" },
+        { front: "ötünç soramak", back: "sich entschuldigen" , level:"A2" },
+        { front: "ýuwunmak", back: "sich waschen" , level:"A2" },
+        { front: "duýmak", back: "sich fühlen" , level:"A2" },
 
-        /* ===== B1 ===== */
-        { front: "pikirlenmek", back: "denken" },
-        { front: "razylaşmak", back: "zustimmen" },
-        { front: "ret etmek", back: "ablehnen" },
-        { front: "garaşmak", back: "erwarten" },
-        { front: "karar bermek", back: "entscheiden" },
-        { front: "deňeşdirmek", back: "vergleichen" },
-        { front: "suratlandyrmak", back: "beschreiben" },
-        { front: "habar bermek", back: "berichten" },
-        { front: "ara alyp maslahatlaşmak", back: "diskutieren" },
-        { front: "habar ýetirmek", back: "mitteilen" },
-        { front: "tanyşdyrmak", back: "vorstellen" },
-        { front: "işlemek", back: "arbeiten" },
-        { front: "işden çykmak", back: "kündigen" },
-        { front: "işe almak", back: "einstellen" },
-        { front: "arz etmek", back: "sich bewerben" },
-        { front: "gatnaşmak", back: "teilnehmen" },
-        { front: "guramak", back: "organisieren" },
-        { front: "taýýarlamak", back: "vorbereiten" },
-        { front: "amala aşyrmak", back: "durchführen" },
-        { front: "meýilleşdirmek", back: "planen" },
-        { front: "barlamak", back: "prüfen" },
-        { front: "münmek", back: "einsteigen" },
-        { front: "düşmek", back: "aussteigen" },
-        { front: "çalyşmak", back: "umsteigen" },
-        { front: "sypdyrmak", back: "verpassen" },
-        { front: "ýetmek", back: "erreichen" },
-        { front: "taşlamak / terk etmek", back: "verlassen" },
-        { front: "yza dolanmak", back: "zurückkehren" },
-        { front: "el çekmek", back: "aufgeben" },
-        { front: "dowam etmek", back: "fortsetzen" },
-        { front: "bile gatnaşmak", back: "mitmachen" },
-        { front: "anyklamak", back: "feststellen" },
-        { front: "bolup geçmek", back: "stattfinden" },
-        { front: "ýatyryp goýmak", back: "abbrechen" },
-        { front: "gowulandyrmak", back: "verbessern" },
-        { front: "gaharlanmak", back: "sich ärgern" },
-        { front: "geň galmak", back: "sich wundern" },
+        { front: "pikirlenmek", back: "denken" , level:"B1" },
+        { front: "razylaşmak", back: "zustimmen" , level:"B1" },
+        { front: "ret etmek", back: "ablehnen" , level:"B1" },
+        { front: "garaşmak", back: "erwarten" , level:"B1" },
+        { front: "karar bermek", back: "entscheiden" , level:"B1" },
+        { front: "deňeşdirmek", back: "vergleichen" , level:"B1" },
+        { front: "suratlandyrmak", back: "beschreiben" , level:"B1" },
+        { front: "habar bermek", back: "berichten" , level:"B1" },
+        { front: "ara alyp maslahatlaşmak", back: "diskutieren" , level:"B1" },
+        { front: "habar ýetirmek", back: "mitteilen" , level:"B1" },
+        { front: "tanyşdyrmak", back: "vorstellen" , level:"B1" },
+        { front: "işlemek", back: "arbeiten" , level:"B1" },
+        { front: "işden çykmak", back: "kündigen" , level:"B1" },
+        { front: "işe almak", back: "einstellen" , level:"B1" },
+        { front: "arz etmek", back: "sich bewerben" , level:"B1" },
+        { front: "gatnaşmak", back: "teilnehmen" , level:"B1" },
+        { front: "guramak", back: "organisieren" , level:"B1" },
+        { front: "taýýarlamak", back: "vorbereiten" , level:"B1" },
+        { front: "amala aşyrmak", back: "durchführen" , level:"B1" },
+        { front: "meýilleşdirmek", back: "planen" , level:"B1" },
+        { front: "barlamak", back: "prüfen" , level:"B1" },
+        { front: "münmek", back: "einsteigen" , level:"B1" },
+        { front: "düşmek", back: "aussteigen" , level:"B1" },
+        { front: "çalyşmak", back: "umsteigen" , level:"B1" },
+        { front: "sypdyrmak", back: "verpassen" , level:"B1" },
+        { front: "ýetmek", back: "erreichen" , level:"B1" },
+        { front: "taşlamak / terk etmek", back: "verlassen" , level:"B1" },
+        { front: "yza dolanmak", back: "zurückkehren" , level:"B1" },
+        { front: "el çekmek", back: "aufgeben" , level:"B1" },
+        { front: "dowam etmek", back: "fortsetzen" , level:"B1" },
+        { front: "bile gatnaşmak", back: "mitmachen" , level:"B1" },
+        { front: "anyklamak", back: "feststellen" , level:"B1" },
+        { front: "bolup geçmek", back: "stattfinden" , level:"B1" },
+        { front: "ýatyryp goýmak", back: "abbrechen" , level:"B1" },
+        { front: "gowulandyrmak", back: "verbessern" , level:"B1" },
+        { front: "gaharlanmak", back: "sich ärgern" , level:"B1" },
+        { front: "geň galmak", back: "sich wundern" , level:"B1" },
+        { front: "to claim", back: "behaupten — öňe sürmek" , level:"B2" },
+        { front: "to assess", back: "einschätzen — bahalandyrmak" , level:"B2" },
+        { front: "to take into account", back: "berücksichtigen — hasaba almak / nazar almak" , level:"B2" },
+        { front: "to doubt", back: "bezweifeln — şübhelenmek" , level:"B2" },
+        { front: "to emphasize", back: "betonen — nygtamak / ünsi çekmek" , level:"B2" },
+        { front: "to assume", back: "vermuten — çaklamak / çakdyrmak" , level:"B2" },
+        { front: "to refute", back: "widerlegen — ret etmek / inkär etmek" , level:"B2" },
+        { front: "to convince", back: "überzeugen — ynandyrmak" , level:"B2" },
+        { front: "to justify", back: "rechtfertigen — aklamak / esaslandyrmak" , level:"B2" },
+        { front: "to criticize", back: "kritisieren — tankytlamak" , level:"B2" },
 
+        // ===== Expressing ideas =====
+        { front: "to express (an opinion)", back: "äußern — pikirini aýtmak" , level:"B2" },
+        { front: "to explain clearly", back: "darlegen — düşnükli düşündirmek" , level:"B2" },
+        { front: "to elaborate", back: "erläutern — jikme-jik düşündirmek" , level:"B2" },
+        { front: "to summarize", back: "zusammenfassen — jemlemek / gysgaça beýan etmek" , level:"B2" },
+        { front: "to negotiate", back: "verhandeln — gepleşik geçirmek" , level:"B2" },
+        { front: "to argue", back: "argumentieren — delil getirmek / delillendirmek" , level:"B2" },
+        { front: "to mention", back: "erwähnen — agzamak / belläp geçmek" , level:"B2" },
+        { front: "to contradict", back: "widersprechen — garşy çykmak" , level:"B2" },
 
-        /* ===== B2 ===== */
-            // ===== Academic / Argumentation =====
-            { front: "to claim", back: "behaupten — öňe sürmek" },
-            { front: "to assess", back: "einschätzen — bahalandyrmak" },
-            { front: "to take into account", back: "berücksichtigen — hasaba almak / nazar almak" },
-            { front: "to doubt", back: "bezweifeln — şübhelenmek" },
-            { front: "to emphasize", back: "betonen — nygtamak / ünsi çekmek" },
-            { front: "to assume", back: "vermuten — çaklamak / çakdyrmak" },
-            { front: "to refute", back: "widerlegen — ret etmek / inkär etmek" },
-            { front: "to convince", back: "überzeugen — ynandyrmak" },
-            { front: "to justify", back: "rechtfertigen — aklamak / esaslandyrmak" },
-            { front: "to criticize", back: "kritisieren — tankytlamak" },
+        // ===== Responsibility / Action =====
+        { front: "to take over / assume responsibility", back: "übernehmen — jogapkärçiligi öz üstüne almak" , level:"B2" },
+        { front: "to contribute", back: "beitragen — goşant goşmak" , level:"B2" },
+        { front: "to evaluate", back: "bewerten — bahalandyrmak" , level:"B2" },
+        { front: "to promote / support", back: "fördern — goldamak / ilerletmek" , level:"B2" },
+        { front: "to demand", back: "verlangen — talap etmek" , level:"B2" },
+        { front: "to concern", back: "betreffen — degmek / aladalandyrmak" , level:"B2" },
+        { front: "to enable", back: "ermöglichen — mümkin etmek" , level:"B2" },
+        { front: "to avoid", back: "vermeiden — gaça durmak / ýüz öwürmek" , level:"B2" },
+        { front: "to influence", back: "beeinflussen — täsir etmek" , level:"B2" },
+        { front: "to implement", back: "umsetzen — durmuşa geçirmek" , level:"B2" },
 
-            // ===== Expressing ideas =====
-            { front: "to express (an opinion)", back: "äußern — pikirini aýtmak" },
-            { front: "to explain clearly", back: "darlegen — düşnükli düşündirmek" },
-            { front: "to elaborate", back: "erläutern — jikme-jik düşündirmek" },
-            { front: "to summarize", back: "zusammenfassen — jemlemek / gysgaça beýan etmek" },
-            { front: "to negotiate", back: "verhandeln — gepleşik geçirmek" },
-            { front: "to argue", back: "argumentieren — delil getirmek / delillendirmek" },
-            { front: "to mention", back: "erwähnen — agzamak / belläp geçmek" },
-            { front: "to contradict", back: "widersprechen — garşy çykmak" },
+        // ===== Change / Process =====
+        { front: "to arise", back: "entstehen — ýüze çykmak / dörmek" , level:"B2" },
+        { front: "to develop", back: "entwickeln — ösdürmek / ösdürilmek" , level:"B2" },
+        { front: "to change", back: "verändern — üýtgetmek" , level:"B2" },
+        { front: "to increase", back: "steigern — artdyrmak" , level:"B2" },
+        { front: "to reduce", back: "verringern — azaldyrmak" , level:"B2" },
+        { front: "to replace", back: "ersetzen — çalyşmak / orny bilen alşyrmak" , level:"B2" },
+        { front: "to expand", back: "erweitern — giňeltmek" , level:"B2" },
+        { front: "to reduce (again)", back: "reduzieren — kemeltmek / azaldyrmak" , level:"B2" },
 
-            // ===== Responsibility / Action =====
-            { front: "to take over / assume responsibility", back: "übernehmen — jogapkärçiligi öz üstüne almak" },
-            { front: "to contribute", back: "beitragen — goşant goşmak" },
-            { front: "to evaluate", back: "bewerten — bahalandyrmak" },
-            { front: "to promote / support", back: "fördern — goldamak / ilerletmek" },
-            { front: "to demand", back: "verlangen — talap etmek" },
-            { front: "to concern", back: "betreffen — degmek / aladalandyrmak" },
-            { front: "to enable", back: "ermöglichen — mümkin etmek" },
-            { front: "to avoid", back: "vermeiden — gaça durmak / ýüz öwürmek" },
-            { front: "to influence", back: "beeinflussen — täsir etmek" },
-            { front: "to implement", back: "umsetzen — durmuşa geçirmek" },
+        // ===== Reflexive / Personal =====
+        { front: "to complain", back: "sich beschweren — şikaýat etmek" , level:"B2" },
+        { front: "to make an effort", back: "sich bemühen — tagallamak" , level:"B2" },
+        { front: "to adapt", back: "sich anpassen — uýgunlaşmak" , level:"B2" },
+        { front: "to concentrate", back: "sich konzentrieren — ünsi jemlemek" , level:"B2" },
+        { front: "to behave", back: "sich verhalten — özüni alyp barmak" , level:"B2" },
+        { front: "to develop oneself", back: "sich entwickeln — özüni ösdürmek" , level:"B2" },
 
-            // ===== Change / Process =====
-            { front: "to arise", back: "entstehen — ýüze çykmak / dörmek" },
-            { front: "to develop", back: "entwickeln — ösdürmek / ösdürilmek" },
-            { front: "to change", back: "verändern — üýtgetmek" },
-            { front: "to increase", back: "steigern — artdyrmak" },
-            { front: "to reduce", back: "verringern — azaldyrmak" },
-            { front: "to replace", back: "ersetzen — çalyşmak / orny bilen alşyrmak" },
-            { front: "to expand", back: "erweitern — giňeltmek" },
-            { front: "to reduce (again)", back: "reduzieren — kemeltmek / azaldyrmak" },
+        // ===== Results / Handling =====
+        { front: "to have an effect", back: "sich auswirken — täsir etmek / netijä ýetirmek" , level:"B2" },
+        { front: "to proceed", back: "vorgehen — öňe gitmek / ädim basmak" , level:"B2" },
+        { front: "to record / hold onto", back: "festhalten — saklamak / tutmak" , level:"B2" },
+        { front: "to prove", back: "nachweisen — subut etmek" , level:"B2" },
+        { front: "to introduce", back: "einführen — girizmek / tanyşdyrmak" , level:"B2" },
+        { front: "to deal with", back: "umgehen (mit) — işlemegi bilmek / ýüzlenmek" }
+    ];
 
-            // ===== Reflexive / Personal =====
-            { front: "to complain", back: "sich beschweren — şikaýat etmek" },
-            { front: "to make an effort", back: "sich bemühen — tagallamak" },
-            { front: "to adapt", back: "sich anpassen — uýgunlaşmak" },
-            { front: "to concentrate", back: "sich konzentrieren — ünsi jemlemek" },
-            { front: "to behave", back: "sich verhalten — özüni alyp barmak" },
-            { front: "to develop oneself", back: "sich entwickeln — özüni ösdürmek" },
-
-            // ===== Results / Handling =====
-            { front: "to have an effect", back: "sich auswirken — täsir etmek / netijä ýetirmek" },
-            { front: "to proceed", back: "vorgehen — öňe gitmek / ädim basmak" },
-            { front: "to record / hold onto", back: "festhalten — saklamak / tutmak" },
-            { front: "to prove", back: "nachweisen — subut etmek" },
-            { front: "to introduce", back: "einführen — girizmek / tanyşdyrmak" },
-            { front: "to deal with", back: "umgehen (mit) — işlemegi bilmek / ýüzlenmek" }
-        ];
-
-
-
-    let startTime = Date.now();
-
-    function updateCounter() {
-        document.getElementById("counter").innerText = `Remaining cards: ${cards.length}`;
+    /* ---------- HELPERS ---------- */
+    function shuffle(arr){
+        return arr.sort(()=>Math.random()-0.5);
     }
 
-    function showCard() {
-        if (!cards || cards.length === 0) {
+    function startGame(){
+        const from = document.getElementById("fromLevel").value;
+        const to = document.getElementById("toLevel").value;
+
+        if(to === "ALL"){
+            cards = shuffle([...ALL_CARDS]);
+        } else {
+            const f = LEVELS.indexOf(from);
+            const t = LEVELS.indexOf(to);
+            if(f > t){
+                alert("From must be lower or equal to To");
+                return;
+            }
+            cards = shuffle(
+                ALL_CARDS.filter(c=>{
+                    const i = LEVELS.indexOf(c.level);
+                    return i>=f && i<=t;
+                })
+            );
+        }
+
+        if(cards.length === 0){
+            alert("No cards found");
+            return;
+        }
+
+        startTime = Date.now();
+
+        document.getElementById("startScreen").style.display="none";
+        document.getElementById("card").style.display="block";
+        document.getElementById("counter").style.display="block";
+
+        showCard();
+    }
+
+    function showCard(){
+        if(cards.length === 0){
             finish();
             return;
         }
         document.getElementById("front").innerText = cards[0].front;
         document.getElementById("answer").innerText = cards[0].back;
-        document.getElementById("answer").style.display = "none";
-        updateCounter();
+        document.getElementById("answer").style.display="none";
+        document.getElementById("counter").innerText = "Remaining: " + cards.length;
     }
 
-    document.getElementById("showAnswer").onclick = () => {
+    document.getElementById("showAnswer").onclick = ()=>{
+        document.getElementById("answer").style.display="block";
+    };
+
+    function showEmoji(id){
+        const e=document.getElementById(id);
+        e.style.opacity=1;
+        setTimeout(()=>e.style.opacity=0,400);
+    }
+    function revealAnswer() {
         document.getElementById("answer").style.display = "block";
-    };
-
-    function showEmoji(side) {
-        const emoji = side === "right" ? document.getElementById("emoji-right") : document.getElementById("emoji-left");
-        emoji.style.opacity = 1;
-        emoji.style.transform = "translateY(-50%) scale(1.2)";
-        setTimeout(() => {
-            emoji.style.opacity = 0;
-            emoji.style.transform = "translateY(-50%) scale(1)";
-        }, 500);
     }
-
-    document.getElementById("rightBtn").onclick = () => {
-        showEmoji("right");
-        cards.shift();
-        setTimeout(showCard, 300);
-    };
 
     document.getElementById("wrongBtn").onclick = () => {
-        showEmoji("left");
-        let card = cards.shift();
-        cards.push(card);
-        setTimeout(showCard, 300);
+        showEmoji("emoji-left");
+        cards.push(cards.shift());
+        showCard();
     };
 
-    function finish() {
-        let totalTime = Math.floor((Date.now() - startTime) / 1000);
-        document.getElementById("card").style.display = "none";
-        document.getElementById("wrongBtn").style.display = "none";
-        document.getElementById("rightBtn").style.display = "none";
-        document.getElementById("counter").style.display = "none";
-        document.getElementById("done").style.display = "block";
-        document.getElementById("done").innerText =
-            `✅ All cards reviewed!\nTime taken: ${totalTime} seconds`;
-    }
+    document.getElementById("rightBtn").onclick = () => {
+        showEmoji("emoji-right");
+        cards.shift();
+        showCard();
+    };
 
-    showCard(); // show first card
+    document.getElementById("showBtn1").onclick = revealAnswer;
+    document.getElementById("showBtn2").onclick = revealAnswer;
+
+    document.getElementById("rightBtn").onclick=()=>{
+        showEmoji("emoji-right");
+        cards.shift();
+        showCard();
+    };
+
+    document.getElementById("wrongBtn").onclick=()=>{
+        showEmoji("emoji-left");
+        cards.push(cards.shift());
+        showCard();
+    };
+
+    function finish(){
+        const t=Math.floor((Date.now()-startTime)/1000);
+        document.getElementById("card").style.display="none";
+        document.getElementById("counter").style.display="none";
+        document.getElementById("done").style.display="block";
+        document.getElementById("done").innerText =
+            `✅ Finished!\nTime: ${t}s`;
+    }
 </script>
 
 </body>
