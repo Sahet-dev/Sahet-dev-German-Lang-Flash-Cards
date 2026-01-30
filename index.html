@@ -15,11 +15,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
             padding: 10px;
+            overflow-x: hidden;
         }
 
-        #timer {
+        #counter {
             position: fixed;
             top: 10px;
             font-size: 16px;
@@ -60,7 +60,7 @@
         }
 
         #answer {
-            margin-top: 15px;
+            margin-top: 75px;
             color: #2c7;
             display: none;
             font-size: 18px;
@@ -77,8 +77,8 @@
             color: white;
             width: 90%;
             max-width: 400px;
-            position: relative; /* inside card */
-            z-index: 5; /* above invisible buttons */
+            position: relative;
+            z-index: 5;
         }
 
         /* Full screen invisible left/right buttons */
@@ -95,7 +95,7 @@
         #wrongBtn { left: 0; }
         #rightBtn { right: 0; }
 
-        /* Emoji feedback smaller on left/right */
+        /* Emoji feedback */
         .emoji {
             position: fixed;
             font-size: 40px;
@@ -121,46 +121,25 @@
 
         /* Responsive adjustments */
         @media (max-width: 500px) {
-            #card {
-                font-size: 18px;
-                min-height: 350px;
-                padding: 15px;
-            }
-
-            #answer {
-                font-size: 16px;
-            }
-
-            #showAnswer {
-                font-size: 15px;
-                padding: 10px;
-            }
-
-            .emoji {
-                font-size: 30px;
-            }
+            #card { font-size: 28px; min-height: 350px; padding: 15px; }
+            #answer { font-size: 46px; }
+            #showAnswer { font-size: 15px; padding: 10px; }
+            .emoji { font-size: 30px; }
         }
     </style>
 </head>
 <body>
 
-<div id="timer">Time: 0s</div>
+<div id="counter">Remaining cards: 0</div>
 
 <div id="card">
     <div id="wrongBtn" class="side-btn"></div>
     <div id="rightBtn" class="side-btn"></div>
     <div class="card-content">
-        <h1>
-            <div id="front"></div>
-
-        </h1>
-
-        <h3><i>
-            <div id="answer"></div>
-        </i>
-        </h3>
+        <h1><div id="front"></div></h1>
+        <h2><i><div id="answer"></div></i></h2>
     </div>
-    <button id="showAnswer">Show Answer</button>
+    <button id="showAnswer">Görkez</button>
 </div>
 
 <div id="emoji-left" class="emoji">❌</div>
@@ -168,12 +147,12 @@
 
 <div id="done"></div>
 
-<!--<script src="cards.js"></script>-->
 <script>
+    // Sample flashcards
     let cards = [
 
         /* ===== A1 ===== */
-        { front: "bolmak", back: "sein" },
+        { front: "bolmak (to be)", back: "sein" },
         { front: "bolmak (eýe bolmak)", back: "haben" },
         { front: "bolup galmak / bolmak", back: "werden" },
         { front: "gitmek", back: "gehen" },
@@ -295,15 +274,77 @@
         { front: "ýatyryp goýmak", back: "abbrechen" },
         { front: "gowulandyrmak", back: "verbessern" },
         { front: "gaharlanmak", back: "sich ärgern" },
-        { front: "geň galmak", back: "sich wundern" }
-    ];
+        { front: "geň galmak", back: "sich wundern" },
+
+
+        /* ===== B2 ===== */
+            // ===== Academic / Argumentation =====
+            { front: "to claim", back: "behaupten — öňe sürmek" },
+            { front: "to assess", back: "einschätzen — bahalandyrmak" },
+            { front: "to take into account", back: "berücksichtigen — hasaba almak / nazar almak" },
+            { front: "to doubt", back: "bezweifeln — şübhelenmek" },
+            { front: "to emphasize", back: "betonen — nygtamak / ünsi çekmek" },
+            { front: "to assume", back: "vermuten — çaklamak / çakdyrmak" },
+            { front: "to refute", back: "widerlegen — ret etmek / inkär etmek" },
+            { front: "to convince", back: "überzeugen — ynandyrmak" },
+            { front: "to justify", back: "rechtfertigen — aklamak / esaslandyrmak" },
+            { front: "to criticize", back: "kritisieren — tankytlamak" },
+
+            // ===== Expressing ideas =====
+            { front: "to express (an opinion)", back: "äußern — pikirini aýtmak" },
+            { front: "to explain clearly", back: "darlegen — düşnükli düşündirmek" },
+            { front: "to elaborate", back: "erläutern — jikme-jik düşündirmek" },
+            { front: "to summarize", back: "zusammenfassen — jemlemek / gysgaça beýan etmek" },
+            { front: "to negotiate", back: "verhandeln — gepleşik geçirmek" },
+            { front: "to argue", back: "argumentieren — delil getirmek / delillendirmek" },
+            { front: "to mention", back: "erwähnen — agzamak / belläp geçmek" },
+            { front: "to contradict", back: "widersprechen — garşy çykmak" },
+
+            // ===== Responsibility / Action =====
+            { front: "to take over / assume responsibility", back: "übernehmen — jogapkärçiligi öz üstüne almak" },
+            { front: "to contribute", back: "beitragen — goşant goşmak" },
+            { front: "to evaluate", back: "bewerten — bahalandyrmak" },
+            { front: "to promote / support", back: "fördern — goldamak / ilerletmek" },
+            { front: "to demand", back: "verlangen — talap etmek" },
+            { front: "to concern", back: "betreffen — degmek / aladalandyrmak" },
+            { front: "to enable", back: "ermöglichen — mümkin etmek" },
+            { front: "to avoid", back: "vermeiden — gaça durmak / ýüz öwürmek" },
+            { front: "to influence", back: "beeinflussen — täsir etmek" },
+            { front: "to implement", back: "umsetzen — durmuşa geçirmek" },
+
+            // ===== Change / Process =====
+            { front: "to arise", back: "entstehen — ýüze çykmak / dörmek" },
+            { front: "to develop", back: "entwickeln — ösdürmek / ösdürilmek" },
+            { front: "to change", back: "verändern — üýtgetmek" },
+            { front: "to increase", back: "steigern — artdyrmak" },
+            { front: "to reduce", back: "verringern — azaldyrmak" },
+            { front: "to replace", back: "ersetzen — çalyşmak / orny bilen alşyrmak" },
+            { front: "to expand", back: "erweitern — giňeltmek" },
+            { front: "to reduce (again)", back: "reduzieren — kemeltmek / azaldyrmak" },
+
+            // ===== Reflexive / Personal =====
+            { front: "to complain", back: "sich beschweren — şikaýat etmek" },
+            { front: "to make an effort", back: "sich bemühen — tagallamak" },
+            { front: "to adapt", back: "sich anpassen — uýgunlaşmak" },
+            { front: "to concentrate", back: "sich konzentrieren — ünsi jemlemek" },
+            { front: "to behave", back: "sich verhalten — özüni alyp barmak" },
+            { front: "to develop oneself", back: "sich entwickeln — özüni ösdürmek" },
+
+            // ===== Results / Handling =====
+            { front: "to have an effect", back: "sich auswirken — täsir etmek / netijä ýetirmek" },
+            { front: "to proceed", back: "vorgehen — öňe gitmek / ädim basmak" },
+            { front: "to record / hold onto", back: "festhalten — saklamak / tutmak" },
+            { front: "to prove", back: "nachweisen — subut etmek" },
+            { front: "to introduce", back: "einführen — girizmek / tanyşdyrmak" },
+            { front: "to deal with", back: "umgehen (mit) — işlemegi bilmek / ýüzlenmek" }
+        ];
+
+
 
     let startTime = Date.now();
-    let timerInterval = setInterval(updateTimer, 1000);
 
-    function updateTimer() {
-        let seconds = Math.floor((Date.now() - startTime) / 1000);
-        document.getElementById("timer").innerText = `Time: ${seconds}s`;
+    function updateCounter() {
+        document.getElementById("counter").innerText = `Remaining cards: ${cards.length}`;
     }
 
     function showCard() {
@@ -314,6 +355,7 @@
         document.getElementById("front").innerText = cards[0].front;
         document.getElementById("answer").innerText = cards[0].back;
         document.getElementById("answer").style.display = "none";
+        updateCounter();
     }
 
     document.getElementById("showAnswer").onclick = () => {
@@ -344,17 +386,17 @@
     };
 
     function finish() {
-        clearInterval(timerInterval);
         let totalTime = Math.floor((Date.now() - startTime) / 1000);
         document.getElementById("card").style.display = "none";
         document.getElementById("wrongBtn").style.display = "none";
         document.getElementById("rightBtn").style.display = "none";
+        document.getElementById("counter").style.display = "none";
         document.getElementById("done").style.display = "block";
         document.getElementById("done").innerText =
             `✅ All cards reviewed!\nTime taken: ${totalTime} seconds`;
     }
 
-    showCard();
+    showCard(); // show first card
 </script>
 
 </body>
